@@ -1,3 +1,4 @@
+#https://www.hackster.io/WolfxPac/colour-detection-using-opencv-python-8cbbe0
 #https://github.com/howardabrams/opencv-python-xp/blob/master/color-detection.py
 
 import cv2
