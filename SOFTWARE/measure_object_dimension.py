@@ -5,16 +5,18 @@
 from pydonesia import ComputerVision
 import os
 
-cv = ComputerVision()
+def dimensao():
 
-cwd = os.getcwd()
+    cv = ComputerVision()
 
-file_all = os.listdir(cwd)
+    cwd = os.getcwd()
 
-images = []
-for f in file_all:
-    if f.lower().endswith('jpg'): images.append(f)
+    file_all = os.listdir(cwd)
 
-for i in images:
-    image = i
-    cv.measure_object_dimension(image, coin_diameter = 3.8, unit = 'cm')
+    images = []
+    for f in file_all:
+        if f.lower().endswith('jpg'): images.append(f)
+
+    for i in images:
+        image = i
+        cv.measure_object_dimension(image, coin_diameter = 3.8, unit = 'cm')

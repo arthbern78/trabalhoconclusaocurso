@@ -2,6 +2,7 @@ import os
 import dlib
 import cv2
 import glob
+from dimensao import dimensao
 
 
 def main(args):
@@ -92,6 +93,7 @@ def main(args):
     camera.release()
     return 0
 
+    dimensao()
 
 if __name__ == '__main__':
     import sys
