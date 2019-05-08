@@ -15,7 +15,7 @@ def main(args):
 
     while (emLoop):
 
-        img = camera.read()
+        retval, img = camera.read()
         cv2.imshow('Foto', img)
 
         k = cv2.waitKey(100)
