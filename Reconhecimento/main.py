@@ -1,13 +1,9 @@
-import os
 import dlib
 import cv2
-import glob
 
 
 def main(args):
     camera_port = 0
-
-    nFrames = 30
 
     camera = cv2.VideoCapture(camera_port)
 
@@ -42,7 +38,6 @@ def main(args):
             objetosDetectados_faca = detectorFaca(img)
             objetosDetectados_rebite = detectorRebite(img)
             objetosDetectados_faca_afiada = detectorAfiada(img)
-            numeroRebitesDetectados = len(objetosDetectados_rebite)
             for d in objetosDetectados_faca:
                 num_Foto = num_Foto + 1
                 e, t, d, b = (int(d.left()), int(d.top()), int(d.right()), int(d.bottom()))
