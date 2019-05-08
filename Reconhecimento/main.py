@@ -9,14 +9,13 @@ def main(args):
 
     file = "D:\dev\kivy\TrabalhoConclusaoCurso\dimensao\Faca.jpg"
 
-    print
-    "Digite <ESC> para sair / <s> para Salvar"
+    print("Digite <ESC> para sair / <s> para Salvar")
 
     emLoop = True
 
     while (emLoop):
 
-        retval, img = camera.read()
+        img = camera.read()
         cv2.imshow('Foto', img)
 
         k = cv2.waitKey(100)
@@ -25,19 +24,23 @@ def main(args):
             emLoop = False
 
         elif k == ord('s'):
+            existe_Faca = 0
+            num_Rebite = 0
+            num_Foto = 0
+            
             cv2.imwrite(file, img)
             emLoop = False
+            
             detectorFacaSerrilhada = dlib.simple_object_detector("detector_faca_serrilhada.svm")
             detectorFaca = dlib.simple_object_detector("detector_faca.svm")
             detectorRebite = dlib.simple_object_detector("detector_faca_rebite.svm")
             detectorAfiada = dlib.simple_object_detector("detector_faca_afiada_ed3.svm")
-            existe_Faca = 0
-            num_Rebite = 0
-            num_Foto = 0
+                                   
             objetosDetectados_faca_serrilhada = detectorFacaSerrilhada(img)
             objetosDetectados_faca = detectorFaca(img)
             objetosDetectados_rebite = detectorRebite(img)
             objetosDetectados_faca_afiada = detectorAfiada(img)
+            
             for d in objetosDetectados_faca:
                 num_Foto = num_Foto + 1
                 e, t, d, b = (int(d.left()), int(d.top()), int(d.right()), int(d.bottom()))
@@ -68,9 +71,10 @@ def main(args):
                 cv2.rectangle(img, (e, t), (d, b), (255, 255, 255), 2)  # branca
                 cv2.putText(img, "REB", (d, t), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.0, (255, 255, 255))
                 num_Rebite = num_Rebite + 1
+                
             if (existe_Faca == 1 and num_Rebite == 1):
                 f = open("Laudo_faca.doc", "a")
-                f.write(str(num_Rebite) + " rebites")
+                f.write(str(num_Rebite) + " rebite")
             elif (existe_Faca == 1 and num_Rebite > 1):
                 f = open("Laudo_faca.doc", "a")
                 f.write(str(num_Rebite) + " rebites")
@@ -80,9 +84,11 @@ def main(args):
 
             existe_Faca = 0
             num_Rebite = 0
+            
             cv2.imshow("Detector de facas", img)
             cv2.waitKey(0)
             print(img.shape)
+            
     cv2.destroyAllWindows()
     camera.release()
     return 0
@@ -93,4 +99,4 @@ if __name__ == '__main__':
 
     sys.exit(main(sys.argv))
 
-#cv2.destroyAllWindows()
+
