@@ -40,7 +40,7 @@ def main(args):
             objetosDetectados_faca = detectorFaca(img)
             objetosDetectados_rebite = detectorRebite(img)
             objetosDetectados_faca_afiada = detectorAfiada(img)
-            
+
             for d in objetosDetectados_faca:
                 num_Foto = num_Foto + 1
                 e, t, d, b = (int(d.left()), int(d.top()), int(d.right()), int(d.bottom()))
@@ -87,8 +87,7 @@ def main(args):
             
             cv2.imshow("Detector de facas", img)
             cv2.waitKey(0)
-            print(img.shape)
-            
+
     cv2.destroyAllWindows()
     camera.release()
     return 0
